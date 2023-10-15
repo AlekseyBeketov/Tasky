@@ -1,0 +1,128 @@
+<template>
+  <body>
+    <div class="badi">
+        <div class="wind">
+            <div class="opa">
+                <div class="text-a">
+                    Авторизация
+                </div>
+                <textarea class="text-area-a" placeholder="Логин" v-model="userInfo.login"></textarea>
+                <input type="password" id="passwordField" class="text-area-a" name="password" placeholder="Пароль" v-model="userInfo.password"/>
+                <button class="btn1" id="vhod" @click="login">Войти</button>
+                <button class="btn2" id="reg">Регистрация</button>
+            </div>
+        </div>
+    </div>
+  </body>
+</template>
+
+<script>
+import { toLogin } from '../../api/user'
+
+export default {
+  name: 'LogIn',
+  data () {
+    return {
+      userInfo: {
+        login: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    async login () {
+      try {
+        await toLogin(this.userInfo)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+  }
+}
+</script>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.badi{
+    background-image: linear-gradient(to left, #648efe, #9966ff);
+    box-sizing: border-box;
+    font-family: 'Montserrat';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.wind{
+    height: 405px;
+    width: 543px;
+    background-color: #fff;
+    text-align: center;
+    border-radius: 40px;
+}
+
+.opa{
+    text-align: left;
+    margin-left: 37px;
+    margin-top: 30px;
+}
+
+.text-a{
+    font-weight: 700;
+    font-size: 42px;
+    cursor: default;
+}
+
+.text-area-a {
+    margin-top: 15px;
+    font-family: 'Montserrat';
+    width: 469px;
+    resize: none;
+    padding:15px;
+    border: 2px solid;
+    border-color: #648efe;
+    height:65px;
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.text-area-a::placeholder {
+    color: #373737;
+}
+
+.button{
+
+}
+
+.btn1{
+    margin-top: 30px;
+    font-family: 'Montserrat';
+    font-weight: 400;
+    color: white;
+    font-size:30px;
+    background-image: linear-gradient(to left, #648efe, #9966ff);
+    border-radius: 25px;
+    border: 0px;
+    padding: 13px 33px;
+}
+
+.btn2{
+    float: right;
+    margin-right: 35px;
+    margin-top: 30px;
+    font-family: 'Montserrat';
+    font-weight: 400;
+    color: white;
+    font-size:30px;
+    background-image: linear-gradient(to left, #648efe, #9966ff);
+    border-radius: 25px;
+    border: 0px;
+    padding: 13px 25px;
+}
+</style>
